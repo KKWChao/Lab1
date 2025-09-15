@@ -1,9 +1,12 @@
-//
-//  ContentView.swift
-//  Lab1
-//
-//  Created by Kelvin Chao on 9/14/25.
-//
+
+/*
+ *  CIS 140
+ *  Lab 1: Group 14
+ *  Kelvin Chao
+ *  Tyler Hager
+ *  15/09/25
+ */
+
 
 import SwiftUI
 
