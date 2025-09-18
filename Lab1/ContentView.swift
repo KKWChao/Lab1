@@ -1,6 +1,6 @@
 
 /*
- *  CIS 140
+ *  CIS 137
  *  Lab 1: Group 14
  *  Kelvin Chao
  *  Tyler Hager
@@ -30,36 +30,37 @@ var descriptions: [String] = [
 
 var dogDict = Dictionary(uniqueKeysWithValues: zip(dogNames, descriptions))
 
-var dog = ""
-
 struct ContentView: View {
+    @State var dog: String = ""
+    
     var body: some View {
-        HStack {
-            Text("Tap on the dog to view the description")
-        }
-        .bold()
-        .font(.system(size: 24))
-        .padding(.bottom, 32)
-        
-        let columns = [GridItem(.adaptive(minimum:100))]
-        
-        LazyVGrid(columns:columns) {
-            ForEach(0..<dogNames.count, id: \.self) { index in
-                Image(dogNames[index])
-                    .resizable()
-                    .scaledToFit()
-                    .padding(5)
-                    
-                
-                // need to add this
-//                    .onTapGesture {
-//                        dog=dogNames[index]
-//                    }
+        ScrollView {
+            HStack {
+                Text("Tap on the dog to view the description")
+            }
+            .bold()
+            .font(.system(size: 24))
+            .padding(.bottom, 32)
+            
+            let columns = [GridItem(.adaptive(minimum:100))]
+            
+            LazyVGrid(columns:columns) {
+                ForEach(0..<dogNames.count, id: \.self) { index in
+                    Image(dogNames[index])
+                        .resizable()
+                        .scaledToFit()
+                        .padding(5)
+                        .onTapGesture {
+                            dog = dogNames[index]
+                        }
+                }
+            }
+            .padding(.bottom, 32)
+            
+            if let description = dogDict[dog] {
+                Text(description)
             }
         }
-        .padding(.bottom, 32)
-        //            Text(dogNames[dog!]!)
-        Text("Dog info Goes here!")
     }
 }
 
